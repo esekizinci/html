@@ -5,17 +5,30 @@
 <body>
     <form action="action.php">
         <label for="ad">Isim:</label><br>
-        <input type="text" name="" id="ad" placeholder="Ha$met" required><br><br>
+        <input type="text" name="ad" id="ad" placeholder="Ha$met" required><br><br>
+
         <label for="soyad">Soyisim:</label><br>
-        <input type="text" name="" id="soyad" placeholder="Asilkan" required><br><br>
+        <input type="text" name="soyad" id="soyad" placeholder="Asilkan" required><br><br>
+
         <label for="tarih">Dogum Tarihi:</label><br>
-        <input type="date" name="" id="tarih"><br><br>
-        <label for="">$ifre:</label><br>
-        <input type="password" name="" id="sifre" placeholder="*******" 
+        <input type="date" name="tarih" id="tarih"><br><br>
+
+        <label for="sifre">$ifre:</label><br>
+        <input type="password" name="sifre" id="sifre" placeholder="*******" 
         maxlength="8" required><br><br>
+        
+        <label for="posta">E-posta:</label><br>
+        <input type="email" name="posta" id="posta" placeholder="isim@domain.com" 
+        required><br><br>
+
+        <label for="telefon">Telefon:</label><br>
+        <input type="tel" name="telefon" id="telefon" placeholder="5321112233" 
+        maxlength="10"><br><br>
+        
         <input type="submit">
         <input type="reset">
     </form>
     
 </body>
 </html>
+<!--id ve for iliskilidir!-->

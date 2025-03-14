@@ -7,6 +7,11 @@
     <style>
         p{
             color: darkblue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
         }
         .kirmizi{
             color: darkred;
@@ -14,9 +19,21 @@
         #yesil{
             color: darkgreen;
         }
+        .alti{
+            text-decoration: underline;
+        }
+        .ustu{
+            text-decoration: line-through;
+        }
+        .golge{
+            text-shadow: 3px 3px 6px darkgoldenrod;
+        }
     </style>
 </head>
 <body>
+    <p class="alti">Bu metnin alti cizili ve 50 tane</p>
+    <p class="ustu">Bu metnin ustu cizili ve 50 tane</p>
+    <p class="golge">Bu metin golgeli ve 50 tane</p>
     <p class="kirmizi" id="yesil">Bu yazinin rengi ne olacak?</p>
     <!--ID si en yuksek olan oncelik alir, ID en yuksek!-->
     <h1 class="kirmizi" id="yesil" style="color: darkorange;">

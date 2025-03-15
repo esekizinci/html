@@ -22,5 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     file_put_contents($dosya, json_encode($mevcut_veriler, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
     echo "Form basariyla kaydedildi!";
+
+    echo '<br><br><a href="index.html" style="
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease;">
+    Ana Sayfaya Dön</a>';
 }
 ?>

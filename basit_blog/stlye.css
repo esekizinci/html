@@ -44,9 +44,9 @@
 body{
     background-color: rgba(53, 51, 87, 0.61);
   }
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .leftcolumn, .rightcolumn {
       width: 100%;
       padding: 0;
     }
-}
+  }

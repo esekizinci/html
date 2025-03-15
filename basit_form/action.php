@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $veri = ["ad" => $ad, "soyad" => $soyad, "posta" => $posta];
 
-    $dosya = "/formdb.json";
+    $dosya = __DIR__ . "/formdb.json";
 
     if (file_exists($dosya)) {
         $mevcut_veriler = json_decode(file_get_contents($dosya), true);

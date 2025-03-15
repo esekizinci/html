@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     #$sigorta = htmlspecialchars($_POST["sigorta"]);
     #$ok = htmlspecialchars($_POST["ok"]);
 
-    $veri = ["ad" => $ad, "posta" => $posta];
+    $veri = ["ad" => $ad, "soyad" => $soyad, "posta" => $posta];
 
     $dosya = "formdb.json";
 

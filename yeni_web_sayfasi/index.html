@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basit bir sayfa!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      background-color: rgb(40, 90, 130);
+      font-size: 1.3rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto; 
+      padding: 40px 20px;
+      background-color: rgb(40, 90, 130);
+      box-shadow: 0 0 100px rgba(0,0,0,1);
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: darkseagreen;
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+      font-size: 3rem;
+      color:azure;
+    }
+
+    article h2 {
+      color: darkgoldenrod;
+      margin-top: 30px;
+    }
+
+    article p {
+      color:azure;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Neler Oluyor?!</h1>
+      <p>Yaptiklarim, yapiyor olduklarim, denemelerim!</p>
+    </header>
+
+    <article>
+        <div>
+            <h2>Sistem Odasi ISI ve NEM!</h2>
+            <p>
+              Burada belirtilen isi ve nem degerleri Java ile baska bir klasorde 
+              kayit altina alinan log dosyasinin icerisinde periyodik olarak son 
+              satirin alinmasiyla olusturulmaktadir.
+            </p>
+        </div>
+
+        <div>      
+            <h2>Calisma Masasi ISI ve NEM!</h2>
+            <p>
+                Burada belirtilen isi ve nem degerleri baska bir bilgisayarda bagli bulunan 
+                bir sensor'den Python kodu ile cekilerek ekrana yazdirilmaktadir.
+            </p>
+        </div>
+
+    </article>
+
+    <footer style="font-size: x-large; color: rgb(152, 153, 155);">
+      &copy; 2025 - Kutupirt ve Fikibok'a selamlar!
+    </footer>
+  </div>
+
+</body>
+</html>

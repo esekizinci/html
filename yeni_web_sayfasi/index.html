@@ -35,7 +35,7 @@
     }
 
     article h2 {
-      color: darkgoldenrod;
+      color: rgb(230, 140, 30);
       margin-top: 30px;
     }
 
@@ -74,6 +74,36 @@
               kayit altina alinan log dosyasinin icerisinde periyodik olarak son 
               satirin alinmasiyla olusturulmaktadir.
             </p>
+                <div id="sensorBox" style="
+                background-color: rgba(255, 255, 255, 0.1);
+                color: lightgreen;
+                padding: 20px;
+                border-radius: 8px;
+                margin-top: 10px;
+                font-size: 1.4rem;
+                font-family: monospace;
+                box-shadow: 0 0 10px rgba(0,0,0,0.3);
+                ">
+                Sensor verisi yukleniyor...
+                </div>
+
+                <script>
+                async function guncelleSensorVerisi() {
+                try {
+                const response = await fetch('get_sensor_data.php');
+                const text = await response.text();
+                document.getElementById('sensorBox').textContent = text;
+                } catch (err) {
+                document.getElementById('sensorBox').textContent = 'Veri cekilemedi.';
+                }
+                }
+
+                // Sayfa yuklenince hemen guncelle
+                guncelleSensorVerisi();
+
+                // Her 60 saniyede bir tekrar veri cek
+                setInterval(guncelleSensorVerisi, 60000);
+                </script>
         </div>
 
         <div>      

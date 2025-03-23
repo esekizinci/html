@@ -176,62 +176,63 @@
     </footer>
   </div>
   
-  <script>
+<script>
     // SENSÖR, CPU, DÖVİZ verilerini çeker
     async function guncelleSensorCpuDoviz() {
-      try {
-        const response = await fetch('get_sensor_data.php');
-        const json = await response.json();
-  
-        // SENSOR
-        document.getElementById('sensorBox').textContent = json.sensor;
-  
-        // CPU
-        document.getElementById('cpuBox').textContent =
-          `CPU Isi: ${json.cpu_temp} | Kullanim: ${json.cpu_usage}`;
-  
-        // DÖVİZ
-        document.getElementById('dovizBox').textContent =
-          `Dolar/TL: ${json.usd_try} | Euro/TL: ${json.eur_try}`;
-      } catch (err) {
-        document.getElementById('sensorBox').textContent = 'Sensor verisi cekilemedi.';
-        document.getElementById('cpuBox').textContent = 'CPU verisi cekilemedi.';
-        document.getElementById('dovizBox').textContent = 'Doviz verisi cekilemedi.';
-      }
+    try {
+    const response = await fetch('get_sensor_data.php');
+    const json = await response.json();
+
+    // SENSOR
+    document.getElementById('sensorBox').textContent = json.sensor;
+
+    // CPU
+    document.getElementById('cpuBox').textContent =
+    `CPU Isi: ${json.cpu_temp} | Kullanim: ${json.cpu_usage}`;
+
+    // DÖVİZ
+    document.getElementById('dovizBox').textContent =
+    `Dolar/TL: ${json.usd_try} | Euro/TL: ${json.eur_try}`;
+    } catch (err) {
+    document.getElementById('sensorBox').textContent = 'Sensor verisi cekilemedi.';
+    document.getElementById('cpuBox').textContent = 'CPU verisi cekilemedi.';
+    document.getElementById('dovizBox').textContent = 'Doviz verisi cekilemedi.';
     }
-  
+    }
+
+
     // LOTO verisini çeker
     async function guncelleLotoVerisi() {
-      try {
-        const response = await fetch('get_sensor_data.php');
-        const json = await response.json();
-  
-        if (json.loto_numbers && json.loto_6_bilen && json.loto_5_bilen) {
-          const sayilar = json.loto_numbers.join(" - ");
-          const altibilen = `6 Bilen: ${json.loto_6_bilen} kisi | Odul: ${json.loto_6_odul}`;
-          const besbilen = `5 Bilen: ${json.loto_5_bilen} kisi | Odul: ${json.loto_5_odul}`;
-  
-          document.getElementById('lotoBox').innerHTML = `
-            <strong>Sayilar:</strong> ${sayilar}<br>
-            <strong>${altibilen}</strong><br>
-            <strong>${besbilen}</strong>
-          `;
-        } else {
-          document.getElementById('lotoBox').textContent = 'Loto verisi eksik.';
-        }
-      } catch (err) {
-        document.getElementById('lotoBox').textContent = 'Loto verisi cekilemedi.';
-      }
+    try {
+    const response = await fetch('loto_cache.json');  // ARTIK JSON DOSYASINDAN
+    const json = await response.json();
+
+    if (json.loto_numbers && json.loto_6_bilen && json.loto_5_bilen) {
+    const sayilar = json.loto_numbers.join(" - ");
+    const altibilen = `6 Bilen: ${json.loto_6_bilen} kisi | Odul: ${json.loto_6_odul}`;
+    const besbilen = `5 Bilen: ${json.loto_5_bilen} kisi | Odul: ${json.loto_5_odul}`;
+
+    document.getElementById('lotoBox').innerHTML = `
+    <strong>Sayilar:</strong> ${sayilar}<br>
+    <strong>${altibilen}</strong><br>
+    <strong>${besbilen}</strong>
+    `;
+    } else {
+    document.getElementById('lotoBox').textContent = 'Loto verisi eksik.';
     }
-  
+    } catch (err) {
+    document.getElementById('lotoBox').textContent = 'Loto verisi cekilemedi.';
+    }
+    }
+
     // İlk yükleme
     guncelleSensorCpuDoviz();
     guncelleLotoVerisi();
-  
+
     // Periyodik tekrarlar
     setInterval(guncelleSensorCpuDoviz, 300000);     // 5 dakikada bir
-    setInterval(guncelleLotoVerisi, 259200000);      // 72 saatte bir (3 gün)
-  </script>
+    setInterval(guncelleLotoVerisi, 300000);      // 5 dakikada bir
+</script>
   
 </body>
 </html>

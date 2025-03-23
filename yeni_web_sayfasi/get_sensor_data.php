@@ -39,44 +39,6 @@ if ($tcmb_xml !== false) {
     $data["eur_try"] = "Veri cekilemedi.";
 }
 
-// LOTO VERISI
-$loto_url = "https://www.nosyapi.com/apiv2/service/lotto/getResult?type=1&apiKey=vdpCOL0rGrOYFYZJmGkWjtMbHnTlxcJ5hlzrxtSwNQHgPoFjcKO0IzdfB415";
-
-$loto_response = @file_get_contents($loto_url);
-$loto_json = json_decode($loto_response, true);
-
-// Loglamak istersen
-// file_put_contents("/tmp/loto_log.json", $loto_response);
-
-if (
-    isset($loto_json['data']['numbers']) &&
-    isset($loto_json['data']['prizes']) &&
-    is_array($loto_json['data']['numbers']) &&
-    is_array($loto_json['data']['prizes'])
-) {
-    // Sayiları sırayla al
-    $numbers_raw = $loto_json['data']['numbers'];
-    $numbers = [
-        $numbers_raw['number1'],
-        $numbers_raw['number2'],
-        $numbers_raw['number3'],
-        $numbers_raw['number4'],
-        $numbers_raw['number5'],
-        $numbers_raw['number6']
-    ];
-
-    // Ödül bilgileri
-    $prizes = $loto_json['data']['prizes'];
-
-    $data["loto_numbers"] = $numbers;
-    $data["loto_6_bilen"] = $prizes[0]['winner'] ?? "0";
-    $data["loto_6_odul"] = $prizes[0]['prizeTL'] ?? "0,00 TL";
-    $data["loto_5_bilen"] = $prizes[2]['winner'] ?? "0";
-    $data["loto_5_odul"] = $prizes[2]['prizeTL'] ?? "0,00 TL";
-} else {
-    $data["loto_error"] = "Loto verisi format hatali veya eksik.";
-}
-
 // JSON olarak döndür
 header('Content-Type: application/json');
 echo json_encode($data);

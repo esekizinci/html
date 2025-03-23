@@ -25,6 +25,27 @@ $cores = (int) shell_exec("nproc");
 $cpu_usage = round(($load[0] / $cores) * 100, 1);
 $data["cpu_usage"] = $cpu_usage . "%";
 
+// TCMB VERILERI
+$tcmb_url = 'https://www.tcmb.gov.tr/kurlar/today.xml';
+$tcmb_xml = @simplexml_load_file($tcmb_url);
+if ($tcmb_xml !== false) {
+    // Dolar/TL
+    $usd = $tcmb_xml->Currency[0]->BanknoteSelling;
+    $data["usd_try"] = number_format((float)$usd, 4, '.', '');
+
+    // Euro/TL
+    $eur = $tcmb_xml->Currency[3]->BanknoteSelling;
+    $data["eur_try"] = number_format((float)$eur, 4, '.', '');
+
+    // Gram Altın/TL
+    $gram_altin = $tcmb_xml->Currency[11]->BanknoteSelling;
+    $data["gram_altin_try"] = number_format((float)$gram_altin, 4, '.', '');
+} else {
+    $data["usd_try"] = "Veri cekilemedi.";
+    $data["eur_try"] = "Veri cekilemedi.";
+    $data["gram_altin_try"] = "Veri cekilemedi.";
+}
+
 // JSON olarak döndür
 header('Content-Type: application/json');
 echo json_encode($data);

@@ -86,26 +86,7 @@
                 ">
                 Sensor verisi yukleniyor...
                 </div>
-
-                <script>
-                async function guncelleSensorVerisi() {
-                try {
-                const response = await fetch('get_sensor_data.php');
-                const text = await response.text();
-                document.getElementById('sensorBox').textContent = text;
-                } catch (err) {
-                document.getElementById('sensorBox').textContent = 'Veri cekilemedi.';
-                }
-                }
-
-                // Sayfa yuklenince hemen guncelle
-                guncelleSensorVerisi();
-
-                // Her 60 saniyede bir tekrar veri cek
-                setInterval(guncelleSensorVerisi, 60000);
-                </script>
-        </div>
-            <div>      
+     
             <h2>Docker Host CPU Kullanim ve ISI Bilgileri!</h2>
             <p>
               Burada belirtilen isi ve islemci kullanim bilgileri 
@@ -132,6 +113,24 @@
       &copy; 2025 - Kutupirt ve Fikibok'a selamlar!
     </footer>
   </div>
-
+  
+  <script>
+    async function guncelleJSONKutulari() {
+      try {
+        const response = await fetch('get_sensor_data.php');
+        const json = await response.json();
+  
+        document.getElementById('sensorBox').textContent = json.sensor;
+        document.getElementById('cpuBox').textContent =
+          `CPU Isi: ${json.cpu_temp} | Kullanim: ${json.cpu_usage}`;
+      } catch (err) {
+        document.getElementById('sensorBox').textContent = 'Sensor verisi cekilemedi.';
+        document.getElementById('cpuBox').textContent = 'CPU verisi cekilemedi.';
+      }
+    }
+  
+    guncelleJSONKutulari();
+    setInterval(guncelleJSONKutulari, 60000);
+  </script>
 </body>
 </html>

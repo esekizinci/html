@@ -107,9 +107,9 @@
         </div>
 
         <div style="border: solid;">
-            <h2>Doviz Kurlari ve Altin Fiyati!</h2>
+            <h2>Doviz Kurlari!</h2>
             <p>
-              Burada belirtilen Dolar/TL, Euro/TL ve Gram Altin fiyatlari 
+              Burada belirtilen Dolar/TL ve Euro/TL fiyatlari 
               Türkiye Cumhuriyet Merkez Bankasi'ndan alinmaktadir.
             </p>
             <div id="dovizBox" style="
@@ -141,9 +141,12 @@
         document.getElementById('sensorBox').textContent = json.sensor;
         document.getElementById('cpuBox').textContent =
           `CPU Isi: ${json.cpu_temp} | Kullanim: ${json.cpu_usage}`;
+        document.getElementById('dovizBox').textContent =
+          `Dolar/TL: ${json.usd_try} | Euro/TL: ${json.eur_try}`;
       } catch (err) {
         document.getElementById('sensorBox').textContent = 'Sensor verisi cekilemedi.';
         document.getElementById('cpuBox').textContent = 'CPU verisi cekilemedi.';
+        document.getElementById('dovizBox').textContent = 'Doviz verisi cekilemedi.';
       }
     }
   

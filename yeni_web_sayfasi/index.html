@@ -112,6 +112,29 @@
                 Burada belirtilen isi ve islemci kullanim bilgileri 
                 Docker Server'in kurulu oldugu bilgisayardan alinmaktadir.
             </p>
+            <div>
+                <script>
+                    async function guncelleSensorVeCPU() {
+                      try {
+                        const response = await fetch('get_sensor_data.php');
+                        const json = await response.json();
+                  
+                        // Sensor kutusu
+                        document.getElementById('sensorBox').textContent = json.sensor;
+                  
+                        // CPU kutusu (ayrı bir <div> açmalısın)
+                        document.getElementById('cpuBox').textContent =
+                          `CPU Isi: ${json.cpu_temp} | Kullanim: ${json.cpu_usage}`;
+                      } catch (err) {
+                        document.getElementById('sensorBox').textContent = 'Veri cekilemedi.';
+                        document.getElementById('cpuBox').textContent = 'CPU verisi cekilemedi.';
+                      }
+                    }
+                  
+                    guncelleSensorVeCPU();
+                    setInterval(guncelleSensorVeCPU, 60000);
+                  </script>
+            </div>
         </div>
 
     </article>

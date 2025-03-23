@@ -40,22 +40,16 @@ if ($tcmb_xml !== false) {
 }
 
 // LOTO VERISI
-$apiKey = "vdpCOL0rGrOYFYZJmGkWjtMbHnTlxcJ5hlzrxtSwNQHgPoFjcKO0IzdfB415"; // NOSYAPI LOTO API KEY
-$loto_url = "https://www.nosyapi.com/apiv2/service/lotto/getResult?type=1"; // sadece sayisal loto sonuclari
+$loto_url = "https://www.nosyapi.com/apiv2/service/lotto/getResult?type=1&apiKey=vdpCOL0rGrOYFYZJmGkWjtMbHnTlxcJ5hlzrxtSwNQHgPoFjcKO0IzdfB415";
 
-$ch = curl_init($loto_url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    "accept: application/json",
-    "authorization: $apiKey"
-]);
+$loto_response = @file_get_contents($loto_url);
+$loto_json = json_decode($loto_response, true);
 
-$response = curl_exec($ch);
-curl_close($ch);
-
-$loto_json = json_decode($response, true);
-
-if (isset($loto_json['data'])) {
+if (
+    isset($loto_json['data']) &&
+    isset($loto_json['data']['numbers']) &&
+    isset($loto_json['data']['prizes'])
+) {
     $numbers = $loto_json['data']['numbers'];
     $prizes = $loto_json['data']['prizes'];
 
@@ -67,6 +61,7 @@ if (isset($loto_json['data'])) {
 } else {
     $data["loto_error"] = "Loto verisi cekilemedi.";
 }
+
 
 // JSON olarak döndür
 header('Content-Type: application/json');

@@ -57,6 +57,12 @@
       font-size: 0.9rem;
     }
 
+    .inline-img {
+    max-width: 390px; /* boyutu isteğine göre ayarla */
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
     @media (max-width: 600px) {
       .container {
         padding: 20px 15px;
@@ -130,6 +136,17 @@
               Doviz verileri yukleniyor...
             </div>
           </div>
+         
+          <div>
+            <h2>AWS S3 Bucket Icinden Gorsel Cekme!</h2>
+            <p>
+            Burada goruntulenen karikaturler AWS uzerinde bulunan bir S3 Bucket icerisinden alinmaktadir, bu bucket Public erisime acilmistir.
+            </p>
+            <div class="img-row">
+                <img src="https://sekizinci-cli-bucket.s3.amazonaws.com/kutupirt.png" alt="Kutupirt" class="inline-img">
+                <img src="https://sekizinci-cli-bucket.s3.amazonaws.com/cukubik.png"  alt="Cukubik" class="inline-img">
+            </div>
+            </div>
 
     </article>
 

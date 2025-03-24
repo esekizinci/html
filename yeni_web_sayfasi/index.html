@@ -11,6 +11,7 @@
       font-family: monospace;
       background-color: rgb(40, 90, 130);
       font-size: 1.3rem;
+      
     }
 
     .cerceve{
@@ -133,15 +134,15 @@
               Türkiye Cumhuriyet Merkez Bankasi'ndan alinmaktadir.
             </p>
             <div id="dovizBox" style="
-              background-color: rgba(255, 255, 255, 0.1);
-              color: gold;
-              padding: 20px;
-              border-radius: 8px;
-              margin-top: 10px;
-              font-size: 1.4rem;
-              font-family: monospace;
-              box-shadow: 0 0 10px rgba(0,0,0,0.3);">
-              Doviz verileri yukleniyor...
+            background-color: rgba(255, 255, 255, 0.1);
+            color: gold;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1.4rem;
+            font-family: monospace;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+            Doviz verileri yukleniyor...
             </div>
           </div>
          
@@ -206,7 +207,7 @@
 
     // DÖVİZ
     document.getElementById('dovizBox').textContent =
-    `Dolar/TL: ${json.usd_try} | Euro/TL: ${json.eur_try}`;
+    `Dolar/TL: ${json.usd_try} | Euro/TL: ${json.eur_try} | Altin/Gr: ${json.altin_try}`;
     } catch (err) {
     document.getElementById('sensorBox').textContent = 'Sensor verisi cekilemedi.';
     document.getElementById('cpuBox').textContent = 'CPU verisi cekilemedi.';

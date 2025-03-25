@@ -25,6 +25,14 @@ $cores = (int) shell_exec("nproc");
 $cpu_usage = round(($load[0] / $cores) * 100, 1);
 $data["cpu_usage"] = $cpu_usage . "%";
 
+// FAN VERISI
+$fan_raw = shell_exec("sensors | grep -i 'fan' | head -n 1");
+if ($fan_raw && preg_match('/\s+(\d+)\s+RPM/i', $fan_raw, $matches)) {
+    $data["fan_rpm"] = $matches[1] . " RPM";
+} else {
+    $data["fan_rpm"] = "Fan bilgisi yok";
+}
+
 /*
 // TCMB VERILERI (Doviz) – ARTIK KULLANILMIYOR
 $tcmb_url = 'https://www.tcmb.gov.tr/kurlar/today.xml';

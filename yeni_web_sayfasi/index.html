@@ -219,35 +219,36 @@
 
     // LOTO verisini çeker
     async function guncelleLotoVerisi() {
-    try {
-    const response = await fetch('loto_cache.json');  // ARTIK JSON DOSYASINDAN
+  try {
+    const response = await fetch('loto_cache.json?t=' + new Date().getTime()); // timestamp ekledik
     const json = await response.json();
 
     if (json.loto_numbers && json.loto_6_bilen && json.loto_5_bilen) {
-    const sayilar = json.loto_numbers.join(" - ");
-    const altibilen = `6 Bilen: ${json.loto_6_bilen} kisi | Odul: ${json.loto_6_odul}`;
-    const besbilen = `5 Bilen: ${json.loto_5_bilen} kisi | Odul: ${json.loto_5_odul}`;
+      const sayilar = json.loto_numbers.join(" - ");
+      const altibilen = `6 Bilen: ${json.loto_6_bilen} kisi | Odul: ${json.loto_6_odul}`;
+      const besbilen = `5 Bilen: ${json.loto_5_bilen} kisi | Odul: ${json.loto_5_odul}`;
 
-    document.getElementById('lotoBox').innerHTML = `
-    <strong>Sayilar:</strong> ${sayilar}<br>
-    <strong>${altibilen}</strong><br>
-    <strong>${besbilen}</strong>
-    `;
+      document.getElementById('lotoBox').innerHTML = `
+        <strong>Sayilar:</strong> ${sayilar}<br>
+        <strong>${altibilen}</strong><br>
+        <strong>${besbilen}</strong>
+      `;
     } else {
-    document.getElementById('lotoBox').textContent = 'Loto verisi eksik.';
+      document.getElementById('lotoBox').textContent = 'Loto verisi eksik.';
     }
-    } catch (err) {
+  } catch (err) {
     document.getElementById('lotoBox').textContent = 'Loto verisi cekilemedi.';
-    }
-    }
+  }
+}
+
 
     // İlk yükleme
     guncelleSensorCpuDoviz();
     guncelleLotoVerisi();
 
     // Periyodik tekrarlar
-    setInterval(guncelleSensorCpuDoviz, 120000);     // 5 dakikada bir
-    setInterval(guncelleLotoVerisi, 300000);      // 5 dakikada bir
+    setInterval(guncelleSensorCpuDoviz, 120000);
+    setInterval(guncelleLotoVerisi, 300000);
 </script>
   
 </body>

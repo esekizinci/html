@@ -19,11 +19,16 @@ if ($cpu_temp_raw !== false) {
     $data["cpu_temp"] = "Sicaklik bilgisi yok";
 }
 
-// CPU KULLANIM
-$load = sys_getloadavg();
-$cores = (int) shell_exec("nproc");
-$cpu_usage = round(($load[0] / $cores) * 100, 1);
-$data["cpu_usage"] = $cpu_usage . "%";
+// CPU KULLANIM (anlık yüzde)
+$top_output = shell_exec("top -bn2 | grep '%Cpu' | tail -n 1");
+if (preg_match('/(\d+\.\d+)\s+id/', $top_output, $matches)) {
+    $idle = (float) $matches[1];
+    $cpu_usage = round(100 - $idle, 1);
+    $data["cpu_usage"] = $cpu_usage . "%";
+} else {
+    $data["cpu_usage"] = "Kullanım bilgisi yok";
+}
+
 
 // FAN VERISI
 $fan_raw = shell_exec("sensors | grep -i 'fan' | head -n 1");

@@ -30,23 +30,14 @@ if (preg_match('/(\d+\.\d+)\s+id/', $top_output, $matches)) {
 }
 
 
+
 // FAN VERISI
-$fan_raw = shell_exec("sensors");
-$lines = explode("\n", $fan_raw);
-$found = false;
-
-foreach ($lines as $line) {
-    if (preg_match('/fan\d+:\s+(\d+)\s+RPM/i', $line, $matches)) {
-        $data["fan_rpm"] = $matches[1] . " RPM";
-        $found = true;
-        break;
-    }
-}
-
-if (!$found) {
+$fan_raw = shell_exec("sensors | grep -E 'fan[0-9]:' | head -n 1");
+if ($fan_raw && preg_match('/fan\d+:\s+(\d+)\s+RPM/i', $fan_raw, $matches)) {
+    $data["fan_rpm"] = $matches[1] . " RPM";
+} else {
     $data["fan_rpm"] = "Fan bilgisi yok";
 }
-
 
 /*
 // TCMB VERILERI (Doviz) – ARTIK KULLANILMIYOR

@@ -33,6 +33,7 @@ if ($fan_raw && preg_match('/\s+(\d+)\s+RPM/i', $fan_raw, $matches)) {
     $data["fan_rpm"] = "Fan bilgisi yok";
 }
 
+
 /*
 // TCMB VERILERI (Doviz) – ARTIK KULLANILMIYOR
 $tcmb_url = 'https://www.tcmb.gov.tr/kurlar/today.xml';

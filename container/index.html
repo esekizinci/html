@@ -8,7 +8,7 @@
       background-color: #f0f8ff;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 50px;
     }
     h1 {
       color: #2a9d8f;
@@ -17,10 +17,51 @@
       color: #264653;
       font-size: 1.2em;
     }
+    #weatherChart {
+      max-width: 600px;
+      margin: 40px auto;
+    }
   </style>
 </head>
 <body>
   <h1>Bu sayfa Terraform ile oluşturulmuştur!</h1>
   <p>Her şey otomasyon ile daha güzel 🌱</p>
+
+  <h2>Vianen Hava Durumu (24 Saat)</h2>
+  <canvas id="weatherChart"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    async function drawWeatherChart() {
+      const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.98&longitude=5.10&hourly=temperature_2m&timezone=auto');
+      const data = await response.json();
+      const labels = data.hourly.time.slice(0, 24);
+      const temps = data.hourly.temperature_2m.slice(0, 24);
+
+      const ctx = document.getElementById('weatherChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Sıcaklık (°C)',
+            data: temps,
+            borderColor: '#e76f51',
+            backgroundColor: 'rgba(231, 111, 81, 0.2)',
+            fill: true,
+            tension: 0.3
+          }]
+        },
+        options: {
+          scales: {
+            x: { display: true, title: { display: true, text: 'Saat' }},
+            y: { display: true, title: { display: true, text: '°C' }}
+          }
+        }
+      });
+    }
+
+    drawWeatherChart();
+  </script>
 </body>
 </html>

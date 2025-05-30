@@ -21,15 +21,6 @@
       max-width: 600px;
       margin: 40px auto;
     }
-    #prices {
-      background-color: #e9f5f2;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 400px;
-      border-radius: 10px;
-      color: #1d3557;
-      font-size: 1.1em;
-    }
   </style>
 </head>
 <body>
@@ -38,13 +29,6 @@
 
   <h2>Vianen Hava Durumu (24 Saat)</h2>
   <canvas id="weatherChart"></canvas>
-
-  <h2>Güncel Kur ve Altın Fiyatları</h2>
-  <div id="prices">
-    <p><strong>Dolar/TL:</strong> <span id="usdtry">Yükleniyor...</span> ₺</p>
-    <p><strong>Euro/TL:</strong> <span id="eurtry">Yükleniyor...</span> ₺</p>
-    <p><strong>Altın ONS ($):</strong> <span id="goldOunce">Yükleniyor...</span> $</p>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
@@ -76,6 +60,8 @@
         }
       });
     }
+
+    drawWeatherChart();
   </script>
 </body>
 </html>

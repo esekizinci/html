@@ -39,11 +39,11 @@
   <h2>Vianen Hava Durumu (24 Saat)</h2>
   <canvas id="weatherChart"></canvas>
 
-  <h2>Güncel Fiyatlar (GenelPara)</h2>
+  <h2>Güncel Kur ve Altın Fiyatları</h2>
   <div id="prices">
-    <p><strong>Gram Altın:</strong> <span id="goldPrice">Yükleniyor...</span> ₺</p>
-    <p><strong>Dolar:</strong> <span id="usdPrice">Yükleniyor...</span> ₺</p>
-    <p><strong>Euro:</strong> <span id="eurPrice">Yükleniyor...</span> ₺</p>
+    <p><strong>Dolar/TL:</strong> <span id="usdtry">Yükleniyor...</span> ₺</p>
+    <p><strong>Euro/TL:</strong> <span id="eurtry">Yükleniyor...</span> ₺</p>
+    <p><strong>Altın ONS ($):</strong> <span id="goldOunce">Yükleniyor...</span> $</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -76,23 +76,6 @@
         }
       });
     }
-
-    async function fetchCurrencyPrices() {
-      try {
-        const response = await fetch('https://api.genelpara.com/embed/doviz.json');
-        const data = await response.json();
-
-        document.getElementById('goldPrice').textContent = data.GA.satis;
-        document.getElementById('usdPrice').textContent = data.USD.satis;
-        document.getElementById('eurPrice').textContent = data.EUR.satis;
-      } catch (error) {
-        console.error("Fiyatlar alınamadı:", error);
-        document.getElementById('prices').innerHTML = "<p>Fiyat bilgileri alınamadı.</p>";
-      }
-    }
-
-    drawWeatherChart();
-    fetchCurrencyPrices();
   </script>
 </body>
 </html>
